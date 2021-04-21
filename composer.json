@@ -1,10 +1,9 @@
 {
   "name": "palasthotel/wp-components",
-  "type": "library",
   "description": "Provide helper components for plugin and theme development",
-  "keywords": [],
   "homepage": "https://palasthotel.de",
   "license": "MIT",
+  "version": "0.0.1",
   "authors": [
     {
       "name": "Edward Bock",
@@ -14,9 +13,6 @@
     }
   ],
   "autoload": {
-    "classmap": [
-      "src"
-    ],
     "psr-4": {
       "Palasthotel\\WordPress\\": "src"
     }
