@@ -16,5 +16,8 @@
     "psr-4": {
       "Palasthotel\\WordPress\\": "src"
     }
+  },
+  "extra": {
+    "class": "Palasthotel\\WordPress\\Plugin"
   }
 }
