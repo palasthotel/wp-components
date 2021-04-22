@@ -8,7 +8,7 @@ This composer library provides php class helpers for typical wordpress extension
 
 ## Usage
 
-Add the following to your theme or plugins composer.json
+Add the following to your composer.json
 
 ```json
 {
@@ -33,6 +33,8 @@ Add the following to your theme or plugins composer.json
 ```
 
 Then use `composer install` to install the dependencies. Use `composer install --no-cache` if you use dev version `"palasthotel/wp-components": "dev-master"`.
+
+Include the generated `vendor/autoload.php` to use autoload.
 
 ## Components
 
