@@ -20,8 +20,8 @@ abstract class Database {
 	 * initialize table names and other properties
 	 */
 	abstract function init();
-
-	public function createTable(){
+	
+	public function createTables(){
 		require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
 	}
 }
