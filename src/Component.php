@@ -6,7 +6,7 @@ namespace Palasthotel\WordPress;
 /**
  * @property Plugin plugin
  */
-class _Component {
+class Component {
 
 	public function __construct(Plugin $plugin) {
 		$this->plugin = $plugin;
