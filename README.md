@@ -67,6 +67,7 @@ Use this config if you want to add some term meta fields.
 
 ```php
 $config = \Palasthotel\WordPress\Taxonomy\TermMetaFieldsConfig::build();
+$config->taxonomies(["category", "post_tag"]);
 $config->add(function($taxonomy){
     // render fields on add term page
 });
@@ -85,6 +86,7 @@ Use this config if you want to provide a checkbox field.
 
 ```php
 $config = \Palasthotel\WordPress\Taxonomy\TermMetaCheckboxFieldConfig::build();
+$config->taxonomies(["category"]);
 $config->label("Feature");
 $config->description("What does it do?");
 $config->isChecked(function($term){
