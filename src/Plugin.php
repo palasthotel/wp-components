@@ -37,13 +37,14 @@ abstract class Plugin {
 	public function onDeactivation() {
 	}
 
-	private static $instance;
+	private static $instances = [];
 
 	public static function instance() {
-		if ( ! self::$instance ) {
-			self::$instance = new static();
+		$class = get_called_class();
+		if ( ! isset( self::$instances[ $class ] ) ) {
+			self::$instances[ $class ] = new static();
 		}
 
-		return self::$instance;
+		return self::$instances[ $class ];
 	}
 }
