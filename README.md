@@ -1,12 +1,11 @@
 # WP Components
 
-This composer library provides php class helpers for typical wordpress extensions.
+This composer library provides php class helpers for typical WordPress extensions.
 
 - abstract Plugin class as plugin starting point
-- Component class for plugin component classes
 - Extend term with meta values
 
-## Usage
+## Get started
 
 Add the following to your composer.json
 
@@ -36,9 +35,7 @@ Then use `composer install` to install the dependencies. Use `composer install -
 
 Include the generated `vendor/autoload.php` to use autoload.
 
-## Components
-
-### Plugin
+## Plugin
 
 Extend the abstract class Plugin.
 
@@ -61,7 +58,7 @@ MyPlugin::instance();
 ```
 This Plugin class automatically holds some properties like `path`, `url` and `basename`.
 
-### TermMetaFields
+## TermMetaFields
 
 Use this config if you want to add some term meta fields.
 
