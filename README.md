@@ -58,6 +58,25 @@ MyPlugin::instance();
 ```
 This Plugin class automatically holds some properties like `path`, `url` and `basename`.
 
+## Database
+
+Use the abstract class Database.
+
+```php
+class MyDatabase extends \Palasthotel\WordPress\Database {
+    public function init(){
+        $this->table = $this->wpdb->prefix."my_table";
+    }
+    
+    // implement query and manipulation functions
+    
+    public function createTables(){
+        parent::createTables(); 
+        dbDelta("CREATE TABLE QUERY");
+    }
+}
+```
+
 ## TermMetaFields
 
 Use this config if you want to add some term meta fields.
