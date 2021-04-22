@@ -4,28 +4,37 @@
 namespace Palasthotel\WordPress;
 
 
+use ReflectionException;
+
 /**
  * @property string path
  * @property string url
+ * @property string basename
  */
 abstract class Plugin {
 
+	/**
+	 * @throws ReflectionException
+	 */
 	public function __construct() {
-		$this->path = plugin_dir_path( __FILE__ );
-		$this->url  = plugin_dir_url( __FILE__ );
+		$ref            = new \ReflectionClass( get_called_class() );
+		$this->path     = plugin_dir_path( $ref->getFileName() );
+		$this->url      = plugin_dir_url( $ref->getFileName() );
+		$this->basename = plugin_basename( $ref->getFileName() );
 
 		$this->onCreate();
 
-		register_activation_hook( __FILE__, array( $this, "onActivation" ) );
-		register_deactivation_hook( __FILE__, array( $this, "onDeactivation" ) );
+		register_activation_hook( $ref->getFileName(), array( $this, "onActivation" ) );
+		register_deactivation_hook( $ref->getFileName(), array( $this, "onDeactivation" ) );
+
 	}
 
 	abstract function onCreate();
 
-	function onActivation() {
+	public function onActivation() {
 	}
 
-	function onDeactivation() {
+	public function onDeactivation() {
 	}
 
 	private static $instance;
