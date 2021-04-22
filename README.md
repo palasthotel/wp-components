@@ -19,7 +19,7 @@ Add the following to your composer.json
     }
   ],
   "require": {
-    "palasthotel/wp-components": "0.0.1"
+    "palasthotel/wp-components": "0.0.3"
   },
   "autoload": {
     "psr-4": {
