@@ -16,7 +16,7 @@ Add the following to your composer.json
     }
   ],
   "require": {
-    "palasthotel/wp-components": "0.0.4"
+    "palasthotel/wp-components": "0.0.5"
   },
   ...
 }
