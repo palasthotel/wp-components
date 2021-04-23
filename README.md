@@ -19,13 +19,7 @@ Add the following to your composer.json
     }
   ],
   "require": {
-    "palasthotel/wp-components": "0.0.3"
-  },
-  "autoload": {
-    "psr-4": {
-      ...
-      "Palasthotel\\WordPress\\": "vendor/palasthotel/wp-components/src"
-    }
+    "palasthotel/wp-components": "0.0.4"
   },
   ...
 }
@@ -56,7 +50,7 @@ class MyPlugin extends \Palasthotel\WordPress\Plugin {
 }
 MyPlugin::instance();
 ```
-This Plugin class automatically holds some properties like `path`, `url` and `basename`.
+This Plugin class automatically has some properties like `path`, `url` and `basename` and holds the singleton instance.
 
 ## Database
 
@@ -76,6 +70,55 @@ class MyDatabase extends \Palasthotel\WordPress\Database {
     }
 }
 ```
+
+## Attachment Meta Field
+
+Use these classes if you want to add some meta fields to attachments.
+
+
+
+### TextMetaField
+
+```php
+$field = \Palasthotel\WordPress\Attachment\TextMetaField::build("my_meta_key")
+->label("My label")
+->help("Some helping hint");
+```
+
+The value will be saved to `my_meta_key` post meta. It can be accessed by with `$field->getValue($attachment_id);` and set with `$field->setValue($attachment_id, $value)`.
+
+Saving and providing values can be customized.
+
+```php
+class MyStore implements \Palasthotel\WordPress\Service\StoreInterface {
+    public function set($id,$value){
+     // save the value however you like
+    }
+    public function get($id){
+     // get the value and return it
+    }
+}
+$field->useStore(new MyStore());
+```
+
+### TextareaMetaField
+
+This class is working exactly like TextMetaField.
+
+### SelectMetaField
+
+```php
+$field = \Palasthotel\WordPress\Attachment\SelectMetaField::build("my_meta_key")
+->label("My label")
+->help("Some helping hint")
+->options([
+    \Palasthotel\WordPress\Model\Option::build("","-nothing selected-"),
+    \Palasthotel\WordPress\Model\Option::build("1","One"),
+    \Palasthotel\WordPress\Model\Option::build("2","Two"),
+]);
+```
+
+Getter, setter and useStore functions are working exactly like TextMetaField.
 
 ## TermMetaFields
 

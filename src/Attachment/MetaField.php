@@ -4,6 +4,9 @@
 namespace Palasthotel\WordPress\Attachment;
 
 
+use Palasthotel\WordPress\Service\PostMetaStore;
+use Palasthotel\WordPress\Service\StoreInterface;
+
 /**
  */
 abstract class MetaField {
@@ -11,21 +14,18 @@ abstract class MetaField {
 	protected $id;
 	protected $label;
 	protected $help;
-	private $onSave;
-	private $fnValue;
 
-	public function __construct( string $id, int $priority) {
+	/**
+	 * @var StoreInterface
+	 */
+	private $store;
+
+	public function __construct( string $id, int $priority ) {
 		$this->id    = $id;
 		$this->label = "";
 		$this->help  = "";
 
-		$this->value(function($attachment_id){
-			return get_post_meta( $attachment_id, $this->id, true );
-		});
-
-		$this->onSave(function ( $attachment_id, $value ) {
-			update_post_meta( $attachment_id, $this->id, sanitize_text_field($value));
-		});
+		$this->useStore( new PostMetaStore( $id ) );
 
 		add_filter( 'attachment_fields_to_edit', function ( $form_fields, $post ) {
 			$form_fields[ $this->id ] = $this->field( [], $post );
@@ -33,12 +33,9 @@ abstract class MetaField {
 			return $form_fields;
 		}, $priority, 2 );
 		add_action( 'edit_attachment', function ( $attachment_id ) {
-			if ( ! is_callable( $this->onSave ) ) {
-				return;
-			}
 			$value = $this->getRequestValue( $attachment_id );
 			if ( null != $value ) {
-				call_user_func( $this->onSave, $attachment_id, $value );
+				$this->store->set( $attachment_id, $value );
 			}
 		} );
 	}
@@ -63,8 +60,6 @@ abstract class MetaField {
 		return $_POST["attachments"][ $post_id ][ $this->id ];
 	}
 
-
-
 	public function label( string $value ): self {
 		$this->label = $value;
 
@@ -77,23 +72,27 @@ abstract class MetaField {
 		return $this;
 	}
 
-	public function value( callable $fn ): self {
-		$this->fnValue = $fn;
-
-		return $this;
+	/**
+	 * @param string|int $attachment_id
+	 *
+	 * @return mixed
+	 */
+	public function getValue( $attachment_id ) {
+		return $this->store->get( $attachment_id );
 	}
 
 	/**
 	 * @param string|int $attachment_id
+	 * @param $value
 	 *
-	 * @return false|mixed
+	 * @return mixed
 	 */
-	public function getValue($attachment_id){
-		return call_user_func($this->fnValue, $attachment_id);
+	public function setValue($attachment_id, $value){
+		return $this->store->set($attachment_id, $value);
 	}
 
-	public function onSave( callable $onSave ) {
-		$this->onSave = $onSave;
+	public function useStore( StoreInterface $store ): self {
+		$this->store = $store;
 
 		return $this;
 	}
