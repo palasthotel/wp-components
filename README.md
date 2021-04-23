@@ -2,9 +2,6 @@
 
 This composer library provides php class helpers for typical WordPress extensions.
 
-- abstract Plugin class as plugin starting point
-- Extend term with meta values
-
 ## Get started
 
 Add the following to your composer.json
