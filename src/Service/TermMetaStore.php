@@ -19,4 +19,8 @@ class TermMetaStore implements StoreInterface {
 	public function get( $id ) {
 		return get_term_meta($id, $this->metaKey, true);
 	}
+
+	public function delete( $id ) {
+		delete_term_meta($id, $this->metaKey);
+	}
 }
