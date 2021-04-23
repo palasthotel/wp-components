@@ -97,6 +97,9 @@ class MyStore implements \Palasthotel\WordPress\Service\StoreInterface {
     public function get($id){
      // get the value and return it
     }
+    public function delete($id){
+      // delete value
+    }
 }
 $field->useStore(new MyStore());
 ```
@@ -122,37 +125,47 @@ Getter, setter and useStore functions are working exactly like TextMetaField.
 
 ## TermMetaFields
 
-Use this config if you want to add some term meta fields.
+Use these classes if you want to add some term meta fields.
+
+### TermMetaInputField
 
 ```php
-$config = \Palasthotel\WordPress\Taxonomy\TermMetaFieldsConfig::build();
-$config->taxonomies(["category", "post_tag"]);
-$config->add(function($taxonomy){
-    // render fields on add term page
-});
-$config->edit(function($term){
-    // render form on edit term page
-});
-$config->onSave(function($term_id){
-    // save your field(s)
-});
-new \Palasthotel\WordPress\Taxonomy\TermMetaFields($config);
+$taxonomies = ["category", "post_tag"];
+$field = \Palasthotel\WordPress\Taxonomy\TermMetaInputField::build("my_meta_key", $taxonomies)
+->label("My label")
+->description("Some description")
+->type("number");
 ```
 
-#### Checkbox field
+The value will be saved to `my_meta_key` term meta. It can be accessed by with `$field->getValue($term_id);` and set with `$field->setValue($term_id, $value)`.
 
-Use this config if you want to provide a checkbox field.
+Saving and providing values can be customized.
 
 ```php
-$config = \Palasthotel\WordPress\Taxonomy\TermMetaCheckboxFieldConfig::build();
-$config->taxonomies(["category"]);
-$config->label("Feature");
-$config->description("What does it do?");
-$config->isChecked(function($term){
-     return get_term_meta( $term->term_id, "my_meta_key", true ) === "1";
-});
-$config->onSaveCheckbox(function($term_id, $isChecked){
-    update_term_meta($term_id, "my_meta_key", "1");
-});
-new \Palasthotel\WordPress\Taxonomy\TermMetaFields($config);
+class MyStore implements \Palasthotel\WordPress\Service\StoreInterface {
+    public function set($id,$value){
+     // save the value however you like
+    }
+    public function get($id){
+     // get the value and return it
+    }
+    public function delete($id){
+      // delete value
+    }
+}
+$field->useStore(new MyStore());
 ```
+
+#### TermMetaCheckboxField
+
+```php
+$taxonomies = ["category", "post_tag"];
+$field = \Palasthotel\WordPress\Taxonomy\TermMetaCheckboxField::build("my_meta_key",$taxonomies)
+->label("My label")
+->description("Some description")
+->truthyValue("yes");
+```
+
+Getter, setter and useStore functions are working exactly like TermMetaInputField.
+
+You can access checked boolean state with `$field->isChecked($term_id)`.
