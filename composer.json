@@ -3,7 +3,7 @@
   "description": "Provide helper components for plugin and theme development",
   "homepage": "https://palasthotel.de",
   "license": "MIT",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "authors": [
     {
       "name": "Edward Bock",
