@@ -32,7 +32,7 @@ class SelectMetaField extends MetaField {
 		$value = $this->getValue($post->ID);
 
 		ob_start();
-		echo "<select name='$name' id='attachments-{$post->ID}-{$this->id}'>";
+		echo "<select name='$name' id='attachments-{$post->ID}-{$this->id}' style='max-width: 100%'>";
 		foreach ($this->options as $option){
 		    $selected = ($value === $option->value) ? "selected='selected'" : "";
             echo "<option value='$option->value' $selected>$option->label</option>";
