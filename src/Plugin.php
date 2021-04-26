@@ -31,10 +31,11 @@ abstract class Plugin {
 
 	abstract function onCreate();
 
-	public function onActivation() {
+	public function onActivation(bool $networkWide) {
 	}
 
-	public function onDeactivation() {
+	public function onDeactivation(bool $networkWide) {
+
 	}
 
 	private static $instances = [];
