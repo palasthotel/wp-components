@@ -166,3 +166,35 @@ $field = \Palasthotel\WordPress\Taxonomy\TermMetaCheckboxField::build("my_meta_k
 Getter, setter and useStore functions are working exactly like TermMetaInputField.
 
 You can access checked boolean state with `$field->isChecked($term_id)`.
+
+## Posts table
+
+### Add Column
+
+```php
+$column = \Palasthotel\WordPress\PostsTable\Column::build("my_col_id");
+
+// add a column label
+$column->label("My Label");
+
+// add a render function for column contents
+$column->render(function($post_id){
+    echo "<p>my column content</p>";
+});
+
+// add column after title column
+$column->after("title");
+// add your column before title column
+$column->before("title");
+
+// add column only for these post types
+$column->postTypes(["my_post_type"]);
+
+// or implement ProviderInterface to wait for filter be ready 
+class MyPostTypesProvider implements \Palasthotel\WordPress\Service\ProviderInterface {
+    public function get(){
+        return apply_filters("my_post_types_filter", []);
+    }
+}
+$column->postTypes(new MyPostTypesProvider());
+```
