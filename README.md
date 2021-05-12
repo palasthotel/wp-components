@@ -16,7 +16,7 @@ Add the following to your composer.json
     }
   ],
   "require": {
-    "palasthotel/wp-components": "0.0.7"
+    "palasthotel/wp-components": "0.0.9"
   },
   ...
 }
@@ -37,7 +37,7 @@ class MyPlugin extends \Palasthotel\WordPress\Plugin {
         // this is where you build your plugin components
     }
     
-    public function onActivation(bool $networkWide){
+    public function onActivation($networkWide){
         parent::onActivation($networkWide);
         // you can overwrite onActivation
     }
@@ -47,7 +47,7 @@ class MyPlugin extends \Palasthotel\WordPress\Plugin {
         // this will be called for every site if plugin get activate network wide
     }
     
-    public function onDeactivation(bool $networkWide){
+    public function onDeactivation($networkWide){
         parent::onDeactivation($networkWide);
         // you can overwrite onDeactivation
     }
