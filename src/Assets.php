@@ -17,12 +17,35 @@ abstract class Assets {
 		}, 1 );
 	}
 
-	abstract function onEnqueue( bool $isAdmin, string $hook );
+	public function onEnqueue( bool $isAdmin, string $hook ) {
+		if ( $isAdmin ) {
+			$this->onAdminEnqueue( $hook );
+		} else {
+			$this->onPublicEnqueue( $hook );
+		}
+	}
 
-	public function register( string $handle, string $pluginPathToFile, array $dependencies = [], bool $footer = true ): bool {
+	public function onPublicEnqueue( string $hook ) {
+	}
+
+	public function onAdminEnqueue( string $hook ) {
+	}
+
+	public function registerStyle( string $handle, string $pluginPathToFile, array $dependencies = [], string $media = 'all' ): bool {
 		$filePath = $this->plugin->path . $pluginPathToFile;
 		if ( ! file_exists( $filePath ) ) {
-			error_log( "Asset file does not exist: $filePath" );
+			error_log( "Style file does not exist: $filePath" );
+
+			return false;
+		}
+
+		return wp_register_style( $handle, $filePath, $dependencies, filemtime( $filePath ), $media );
+	}
+
+	public function registerScript( string $handle, string $pluginPathToFile, array $dependencies = [], bool $footer = true ): bool {
+		$filePath = $this->plugin->path . $pluginPathToFile;
+		if ( ! file_exists( $filePath ) ) {
+			error_log( "Script file does not exist: $filePath" );
 
 			return false;
 		}
