@@ -31,9 +31,11 @@ abstract class Plugin {
 
 	abstract function onCreate();
 
-	public function onActivation( bool $networkWide ) {
+	public function onActivation( $networkWide ) {
 		if ( $networkWide ) {
 			MultiSite::foreach([$this, 'onSiteActivation']);
+		} else {
+			$this->onSiteActivation();
 		}
 	}
 
@@ -41,9 +43,11 @@ abstract class Plugin {
 
 	}
 
-	public function onDeactivation( bool $networkWide ) {
+	public function onDeactivation( $networkWide ) {
 		if ( $networkWide ) {
 			MultiSite::foreach([$this, 'onSiteDeactivation']);
+		} else {
+			$this->onSiteDeactivation();
 		}
 	}
 
