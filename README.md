@@ -1,6 +1,10 @@
 # WP Components
 
-This composer library provides php class helpers for typical WordPress extensions.
+This composer library provides php class helpers for typical WordPress extensions. Version number reads as `MAJOR.FEATURE.BUGFIX` which means:
+
+- BUGFIX: only internal bugfix or performance optimizations. No new stuff.
+- FEATURE: something new has been added.
+- MAJOR: something was changed.
 
 ## Get started
 
@@ -16,7 +20,7 @@ Add the following to your composer.json
     }
   ],
   "require": {
-    "palasthotel/wp-components": "0.0.9"
+    "palasthotel/wp-components": "0.1.0"
   },
   ...
 }
@@ -80,11 +84,42 @@ class MyDatabase extends \Palasthotel\WordPress\Database {
 }
 ```
 
+## Assets
+
+Register javascript or style assets. This will automagically use dependency management via _script_.asset.php file if exists or use `filemtime` for proper versioning instead.
+
+```php
+
+class Assets extends \Palasthotel\WordPress\Assets {
+
+    function onEnqueue(bool $isAdmin,string $hook){
+        parent::onEnqueue($isAdmin, $hook);
+        $this->registerScript("my-script-handle","js/my-file.js");
+        $this->registerStyle("my-style-handle", "css/my-file.css");
+        
+        // call wp_enqueue_(script/style) directly or somewhere else
+        wp_enqueue_script("my-script-handle");
+        wp_enqueue_style("my-style-handle");
+    }
+    
+    function onAdminEnqueue(string $hook){
+        parent::onAdminEnqueue($hook);
+        // for all scripts and styles that need to be enqueued for /wp-admin useage
+    }
+    
+    function onPublicEnqueue(string $hook){
+        parent::onPublicEnqueue($hook);
+        // for all scripts and styles that need to be enqueue everywhere but not /wp-admin
+    }
+}
+
+
+
+
+```
 ## Attachment Meta Field
 
 Use these classes if you want to add some meta fields to attachments.
-
-
 
 ### TextMetaField
 
