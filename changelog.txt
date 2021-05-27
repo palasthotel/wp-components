@@ -1,5 +1,6 @@
 # 0.1.0
 
+- Added: TextdomainConfig property to plugin
 - Added: Assets helper abstract class
 
 # 0.0.9

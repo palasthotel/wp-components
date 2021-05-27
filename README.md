@@ -2,9 +2,11 @@
 
 This composer library provides php class helpers for typical WordPress extensions. Version number reads as `MAJOR.FEATURE.BUGFIX` which means:
 
-- BUGFIX: only internal bugfix or performance optimizations. No new stuff.
-- FEATURE: something new has been added.
-- MAJOR: something was changed.
+- BUGFIX: only internal bugfix or performance optimizations. No new stuff
+- FEATURE: something new has been added
+- MAJOR: something was changed that could break
+
+MAJOR version updates will be separated to a new versions namespace so they can be used in parallel to older versions.
 
 ## Get started
 
@@ -39,26 +41,36 @@ class MyPlugin extends \Palasthotel\WordPress\Plugin {
     public function onCreate(){
         // you must implement onCreate function
         // this is where you build your plugin components
+        
+        // (optional) language path settings
+        $this->textdomainConfig = new \Palasthotel\WordPress\Config\TextdomainConfig(
+            "my-plugin-domain", // the text domain of your plugin
+            "languages" // relative path in your plugin directory
+        );
     }
     
     public function onActivation($networkWide){
         parent::onActivation($networkWide);
         // you can overwrite onActivation
+        // better use onSiteActivation
     }
     
     public function onSiteActivation(){
         // you can overwrite onSiteActivation
         // this will be called for every site if plugin get activate network wide
+        // this also works with single site setups
     }
     
     public function onDeactivation($networkWide){
         parent::onDeactivation($networkWide);
         // you can overwrite onDeactivation
+        // better use onSiteDeactivation
     }
     
     public function onSiteDeactivation(){
         // you can overwrite onDeactivation function
         // this will be called for every site if plugin get deactivate network wide
+        // this also works with single site setups
     }
 }
 MyPlugin::instance();
