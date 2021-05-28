@@ -16,7 +16,7 @@ There are two ways to use these components. I recommend the first one for plugin
 
 ### Copy & Past
 
-Find your component and copy past the PHP file into your plugins classes and change it's namespace to your plugins namespace. You should not use composer dependency management in plugins because you will might have several plugins that use it and there could be different versions of which only one will be loaded at runtime.
+Find your component and copy past the PHP file into your plugins classes/Component and change its namespace to your plugins namespace. You should not use composer dependency management in plugins because you will might have several plugins that use it and there could be different versions of which only one will be loaded at runtime.
 
 ### Composer dependency
 
