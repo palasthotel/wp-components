@@ -9,7 +9,7 @@ use ReflectionException;
  * @property string path
  * @property string url
  * @property string basename
- * @since 0.0.1
+ * @since 0.1.1
  */
 abstract class Plugin {
 

@@ -8,6 +8,9 @@ use Palasthotel\WordPress\Service\PostMetaStore;
 use Palasthotel\WordPress\Service\StoreInterface;
 
 /**
+ * Class MetaField
+ * @package Palasthotel\WordPress\Attachment
+ * @version 0.1.1
  */
 abstract class MetaField {
 

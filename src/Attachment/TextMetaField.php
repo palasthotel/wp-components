@@ -3,6 +3,11 @@
 
 namespace Palasthotel\WordPress\Attachment;
 
+/**
+ * Class TextMetaField
+ * @package Palasthotel\WordPress\Attachment
+ * @version 0.1.1
+ */
 class TextMetaField extends MetaField {
 
 	protected $input = "text";

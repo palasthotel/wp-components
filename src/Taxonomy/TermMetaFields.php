@@ -8,6 +8,11 @@ use Palasthotel\WordPress\Service\StoreInterface;
 use Palasthotel\WordPress\Service\TermMetaStore;
 use WP_Term;
 
+/**
+ * Class TermMetaFields
+ * @package Palasthotel\WordPress\Taxonomy
+ * @version 0.1.1
+ */
 abstract class TermMetaFields {
 
 	/**

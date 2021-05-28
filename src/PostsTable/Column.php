@@ -6,6 +6,11 @@ namespace Palasthotel\WordPress\PostsTable;
 
 use Palasthotel\WordPress\Service\ProviderInterface;
 
+/**
+ * Class Column
+ * @package Palasthotel\WordPress\PostsTable
+ * @version 0.1.1
+ */
 class Column {
 
 	/**

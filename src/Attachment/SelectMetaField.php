@@ -6,6 +6,11 @@ namespace Palasthotel\WordPress\Attachment;
 
 use Palasthotel\WordPress\Model\Option;
 
+/**
+ * Class SelectMetaField
+ * @package Palasthotel\WordPress\Attachment
+ * @version 0.1.1
+ */
 class SelectMetaField extends MetaField {
 
 	/**

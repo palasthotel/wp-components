@@ -3,7 +3,11 @@
 
 namespace Palasthotel\WordPress\Service;
 
-
+/**
+ * Class TermMetaStore
+ * @package Palasthotel\WordPress\Service
+ * @version 0.1.1
+ */
 class TermMetaStore implements StoreInterface {
 
 	private $metaKey;

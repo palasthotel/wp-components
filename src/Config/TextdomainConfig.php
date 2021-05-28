@@ -7,6 +7,7 @@ namespace Palasthotel\WordPress\Config;
 /**
  * @property string domain
  * @property string languages
+ * @version 0.1.1
  */
 class TextdomainConfig {
 

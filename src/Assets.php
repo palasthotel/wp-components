@@ -5,8 +5,8 @@ namespace Palasthotel\WordPress;
 
 /**
  * Class Assets
- * @since 0.1.0
  * @package Palasthotel\WordPress
+ * @version 0.1.1
  */
 abstract class Assets {
 	private Plugin $plugin;

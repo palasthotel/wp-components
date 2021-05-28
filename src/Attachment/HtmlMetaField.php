@@ -3,7 +3,11 @@
 
 namespace Palasthotel\WordPress\Attachment;
 
-
+/**
+ * Class HTMLMetaField
+ * @package Palasthotel\WordPress\Attachment
+ * @version 0.1.1
+ */
 class HTMLMetaField extends MetaField {
 
 	private $renderHtml;

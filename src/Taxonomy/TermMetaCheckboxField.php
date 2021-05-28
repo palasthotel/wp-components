@@ -6,6 +6,11 @@ namespace Palasthotel\WordPress\Taxonomy;
 
 use WP_Term;
 
+/**
+ * Class TermMetaCheckboxField
+ * @package Palasthotel\WordPress\Taxonomy
+ * @version 0.1.1
+ */
 class TermMetaCheckboxField extends TermMetaFields {
 
 

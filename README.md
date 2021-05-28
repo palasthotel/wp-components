@@ -12,6 +12,14 @@ MAJOR version updates will be separated to a new versions namespace so they can 
 
 ## Get started
 
+There are two ways to use these components. I recommend the first one for plugins and the second one for themes.
+
+### Copy & Past
+
+Find your component and copy past the PHP file into your plugins classes and change it's namespace to your plugins namespace. You should not use composer dependency management in plugins because you will might have several plugins that use it and there could be different versions of which only one will be loaded at runtime.
+
+### Composer dependency
+
 Add the following to your composer.json
 
 ```json
@@ -33,6 +41,8 @@ Add the following to your composer.json
 Then use `composer install` to install the dependencies. Use `composer install --no-cache` if you use dev version `"palasthotel/wp-components": "dev-master"`.
 
 Include the generated `vendor/autoload.php` to use autoload.
+
+Because always only one theme can be activated it's safe to use composer dependencies here.
 
 ## Plugin
 

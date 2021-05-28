@@ -7,6 +7,7 @@ namespace Palasthotel\WordPress\Model;
 /**
  * @property string value
  * @property string label
+ * @version 0.1.1
  */
 class Option {
 
