@@ -90,6 +90,18 @@ MyPlugin::instance();
 ```
 This Plugin class automatically has some properties like `path`, `url` and `basename` and holds the singleton instance.
 
+## Component
+
+Every subcomponent of the plugin that wants to have to plugin as a dependency.
+
+```php
+class MyComponent extends \Palasthotel\WordPress\Component {
+    public function onCreate(){
+        // $this->plugin is available here
+    }
+}
+```
+
 ## Database
 
 Use the abstract class Database.
