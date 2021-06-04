@@ -42,8 +42,8 @@ abstract class Assets {
 
 			return false;
 		}
-
-		return wp_register_style( $handle, $filePath, $dependencies, filemtime( $filePath ), $media );
+		$fileUrl = $this->plugin->url. $pluginPathToFile;
+		return wp_register_style( $handle, $fileUrl, $dependencies, filemtime( $filePath ), $media );
 	}
 
 	public function registerScript( string $handle, string $pluginPathToFile, array $dependencies = [], bool $footer = true ): bool {
