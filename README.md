@@ -32,7 +32,7 @@ Add the following to your composer.json
     }
   ],
   "require": {
-    "palasthotel/wp-components": "0.1.0"
+    "palasthotel/wp-components": "0.1.1"
   },
   ...
 }
@@ -149,11 +149,25 @@ class Assets extends \Palasthotel\WordPress\Assets {
         // for all scripts and styles that need to be enqueue everywhere but not /wp-admin
     }
 }
+```
 
+## Templates
 
+Use Templates class to find templates.
 
+```php
+$templates = new \Palasthotel\WordPress\Templates($plugin);
+$templates->useThemeDirectory("plugin-parts");
+$templates->useAddTemplatePathsFilter("my_plugin_add_template_paths");
+
+$path = $templates->get_template_path("my-template-file.php");
+
+// will first search in theme (if provided with useThemeDirectory(...))
+// then in custom paths provided by filter (useAddTemplatePathsFilter(...))
+// them in default "templates" folder in the plugin
 
 ```
+
 ## Attachment Meta Field
 
 Use these classes if you want to add some meta fields to attachments.
