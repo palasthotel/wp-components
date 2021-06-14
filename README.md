@@ -2,11 +2,7 @@
 
 This composer library provides php class helpers for typical WordPress extensions. 
 
-Find your component and copy past the PHP file into your plugins classes/Component and change its namespace to your plugins namespace. You should not use composer dependency management in plugins because you will might have several plugins that use it and there could be different versions of which only one will be loaded at runtime.
-
-## Get started
-
-There are two ways to use these components. I recommend the first one for plugins and the second one for themes.
+Find your component and copy past the PHP file into your plugins classes/Components and change its namespace to your plugins namespace. You should not use composer dependency management in plugins because you will might have several plugins that use it and there could be different versions of which only one will be loaded at runtime.
 
 ## Plugin
 
@@ -16,7 +12,7 @@ Extend the abstract class Plugin.
 class MyPlugin extends \Palasthotel\WordPress\Plugin {
     public function onCreate(){
         // you must implement onCreate function
-        // this is where you build your plugin components
+        // this is where you build your plugin components and hooks
         
         // (optional) language path settings
         $this->loadTextdomain(
