@@ -27,7 +27,7 @@ abstract class Update {
 	/**
 	 * check for updates
 	 */
-	function check_updates() {
+	function checkUpdates() {
 		$current_version = $this->getCurrentVersion();
 
 		for ( $i = $current_version + 1; $i <= $this->getVersion(); $i ++ ) {
