@@ -23,7 +23,7 @@ abstract class Update {
 	 *
 	 * @return int
 	 */
-	abstract function setCurrentVersion(int $version): int;
+	abstract function setCurrentVersion(int $version);
 
 	/**
 	 * check for updates
