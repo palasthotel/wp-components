@@ -9,7 +9,7 @@ namespace Palasthotel\WordPress;
  * @property Plugin plugin
  *
  * @package Palasthotel\WordPress
- * @version 0.1.1
+ * @version 0.1.2
  */
 abstract class Component {
 	/**
@@ -25,5 +25,7 @@ abstract class Component {
 	/**
 	 * overwrite this method in component implementations
 	 */
-	abstract function onCreate();
+	public function onCreate(){
+		// init your hooks and stuff
+	}
 }

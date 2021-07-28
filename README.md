@@ -1,48 +1,8 @@
 # WP Components
 
-This composer library provides php class helpers for typical WordPress extensions. Version number reads as `MAJOR.FEATURE.BUGFIX` which means:
+This composer library provides php class helpers for typical WordPress extensions. 
 
-- BUGFIX: only internal bugfix or performance optimizations. No new stuff
-- FEATURE: something new has been added
-- MAJOR: something was changed that could break
-
-MAJOR version updates will be separated to a new versions namespace so they can be used in parallel to older versions.
-
-**Everything below MAJOR 1 can have breaking changes**
-
-## Get started
-
-There are two ways to use these components. I recommend the first one for plugins and the second one for themes.
-
-### Copy & Past
-
-Find your component and copy past the PHP file into your plugins classes/Component and change its namespace to your plugins namespace. You should not use composer dependency management in plugins because you will might have several plugins that use it and there could be different versions of which only one will be loaded at runtime.
-
-### Composer dependency
-
-Add the following to your composer.json
-
-```json
-{
-  ...,
-  "repositories": [
-    {
-      "type": "vcs",
-      "url": "https://github.com/palasthotel/wp-components.git"
-    }
-  ],
-  "require": {
-    "palasthotel/wp-components": "0.1.1"
-  },
-  ...
-}
-```
-
-Then use `composer install` to install the dependencies. Use `composer install --no-cache` if you use dev version `"palasthotel/wp-components": "dev-master"`.
-
-Include the generated `vendor/autoload.php` to use autoload.
-
-Because always only one theme can be activated it's safe to use composer dependencies here.
+Find your component and copy past the PHP file into your plugins classes/Components and change its namespace to your plugins namespace. You should not use composer dependency management in plugins because you will might have several plugins that use it and there could be different versions of which only one will be loaded at runtime.
 
 ## Plugin
 
@@ -52,12 +12,11 @@ Extend the abstract class Plugin.
 class MyPlugin extends \Palasthotel\WordPress\Plugin {
     public function onCreate(){
         // you must implement onCreate function
-        // this is where you build your plugin components
+        // this is where you build your plugin components and hooks
         
         // (optional) language path settings
-        $this->textdomainConfig = new \Palasthotel\WordPress\Config\TextdomainConfig(
+        $this->loadTextdomain(
             "my-plugin-domain", // the text domain of your plugin
-            __FILE__, // in plugin base dir
             "languages" // relative path in your plugin directory
         );
     }
@@ -127,28 +86,15 @@ Register javascript or style assets. This will automagically use dependency mana
 
 ```php
 
-class Assets extends \Palasthotel\WordPress\Assets {
-
-    function onEnqueue(bool $isAdmin,string $hook){
-        parent::onEnqueue($isAdmin, $hook);
-        $this->registerScript("my-script-handle","js/my-file.js");
-        $this->registerStyle("my-style-handle", "css/my-file.css");
-        
-        // call wp_enqueue_(script/style) directly or somewhere else
-        wp_enqueue_script("my-script-handle");
-        wp_enqueue_style("my-style-handle");
-    }
+add_action('wp_enqueue_scripts', function(){
+    $assets = new \Palasthotel\WordPress\Assets($plugin);
+    $assets->registerScript("my-script-handle","js/my-file.js");
+    $assets->registerStyle("my-style-handle", "css/my-file.css");
     
-    function onAdminEnqueue(string $hook){
-        parent::onAdminEnqueue($hook);
-        // for all scripts and styles that need to be enqueued for /wp-admin useage
-    }
-    
-    function onPublicEnqueue(string $hook){
-        parent::onPublicEnqueue($hook);
-        // for all scripts and styles that need to be enqueue everywhere but not /wp-admin
-    }
-}
+    // call wp_enqueue_(script/style) directly or somewhere else
+    wp_enqueue_script("my-script-handle");
+    wp_enqueue_style("my-style-handle");
+});
 ```
 
 ## Templates
