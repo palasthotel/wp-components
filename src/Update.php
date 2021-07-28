@@ -21,7 +21,6 @@ abstract class Update {
 	/**
 	 * @param int $version
 	 *
-	 * @return int
 	 */
 	abstract function setCurrentVersion(int $version);
 
