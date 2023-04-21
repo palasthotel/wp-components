@@ -10,16 +10,18 @@ namespace Palasthotel\WordPress;
  * @version 0.1.3
  */
 abstract class Component {
-	var Plugin $plugin;
+	private Plugin $plugin;
 
 	/**
 	 * _Component constructor.
-	 *
-	 * @param Plugin $plugin
 	 */
 	public function __construct(Plugin $plugin) {
 		$this->plugin = $plugin;
 		$this->onCreate();
+	}
+
+	public function getPlugin(): Plugin {
+		return $this->plugin;
 	}
 
 	/**
