@@ -6,10 +6,7 @@ use ReflectionClass;
 use ReflectionException;
 
 /**
- * @property string path
- * @property string url
- * @property string basename
- * @version 0.1.3
+ * @version 0.1.4
  */
 abstract class Plugin {
 
@@ -19,6 +16,9 @@ abstract class Plugin {
 	private $ref;
 
 	private $tooLateForTextdomain;
+	var $path;
+	var $url;
+	var $basename;
 
 	/**
 	 * @throws ReflectionException

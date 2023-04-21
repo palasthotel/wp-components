@@ -5,11 +5,12 @@ namespace Palasthotel\WordPress\Model;
 
 
 /**
- * @property string value
- * @property string label
- * @version 0.1.1
+ * @version 0.1.2
  */
 class Option {
+
+	var string $value;
+	var string $label;
 
 	public function __construct(string $value, string $label = "") {
 		$this->value = $value;

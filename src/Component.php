@@ -6,12 +6,12 @@ namespace Palasthotel\WordPress;
 /**
  * Class Component
  *
- * @property Plugin plugin
- *
  * @package Palasthotel\WordPress
- * @version 0.1.2
+ * @version 0.1.3
  */
 abstract class Component {
+	var Plugin $plugin;
+
 	/**
 	 * _Component constructor.
 	 *
