@@ -10,7 +10,7 @@ use wpdb;
  */
 abstract class Database {
 
-	var wpdb $wpdb;
+	public wpdb $wpdb;
 
 	public function __construct() {
 		global $wpdb;

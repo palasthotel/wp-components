@@ -16,9 +16,9 @@ abstract class Plugin {
 	private $ref;
 
 	private $tooLateForTextdomain;
-	var $path;
-	var $url;
-	var $basename;
+	public $path;
+	public $url;
+	public $basename;
 
 	/**
 	 * @throws ReflectionException

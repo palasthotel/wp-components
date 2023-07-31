@@ -15,5 +15,10 @@
     "psr-4": {
       "Palasthotel\\WordPress\\": "src/"
     }
+  },
+  "config": {
+      "platform": {
+        "php": "8"
+      }
   }
 }
