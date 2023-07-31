@@ -10,15 +10,12 @@ use ReflectionException;
  */
 abstract class Plugin {
 
-	/**
-	 * @var ReflectionClass
-	 */
-	private $ref;
+	private ReflectionClass $ref;
 
-	private $tooLateForTextdomain;
-	public $path;
-	public $url;
-	public $basename;
+	private bool $tooLateForTextdomain;
+	public string $path;
+	public string $url;
+	public string $basename;
 
 	/**
 	 * @throws ReflectionException
