@@ -5,19 +5,21 @@ namespace Palasthotel\WordPress;
 
 /**
  * Class Assets
- * @version 0.1.3
+ * @version 0.2.0
  */
 class Assets {
 
-	private Plugin $plugin;
+	private string $path;
+	private string $url;
 
-	public function __construct( Plugin $plugin ) {
-		$this->plugin = $plugin;
+	public function __construct( string $basePath, string $baseUrl ) {
+		$this->path = trailingslashit($basePath);
+		$this->url = trailingslashit($baseUrl); 
 	}
 
 	public function registerStyle( string $handle, string $pluginPathToFile, array $dependencies = [], string $media = 'all' ): bool {
-		$filePath = $this->plugin->path . $pluginPathToFile;
-		$fileUrl  = $this->plugin->url . $pluginPathToFile;
+		$filePath = $this->path . $pluginPathToFile;
+		$fileUrl  = $this->url . $pluginPathToFile;
 		if ( ! file_exists( $filePath ) ) {
 			error_log( "Style file does not exist: $filePath" );
 
@@ -29,7 +31,7 @@ class Assets {
 	}
 
 	public function registerScript( string $handle, string $pluginPathToFile, array $dependencies = [], bool $footer = true ): bool {
-		$filePath = $this->plugin->path . $pluginPathToFile;
+		$filePath = $this->path . $pluginPathToFile;
 		if ( ! file_exists( $filePath ) ) {
 			error_log( "Script file does not exist: $filePath" );
 
@@ -48,7 +50,7 @@ class Assets {
 
 		return wp_register_script(
 			$handle,
-			$this->plugin->url . $pluginPathToFile,
+			$this->url . $pluginPathToFile,
 			array_merge( $info["dependencies"], $dependencies ),
 			$info["version"],
 			$footer

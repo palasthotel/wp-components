@@ -10,7 +10,7 @@ namespace Palasthotel\WordPress;
  * @version 0.1.3
  */
 abstract class Component {
-	private Plugin $plugin;
+	protected Plugin $plugin;
 
 	/**
 	 * _Component constructor.

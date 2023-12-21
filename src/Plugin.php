@@ -35,6 +35,14 @@ abstract class Plugin {
 
 	}
 
+	public function getPath(string $inPluginPath): string {
+		return trailingslashit($this->path) . ltrim($inPluginPath,"/");
+	}
+
+	public function getUrl(string $inPluginUrl): string {
+		return trailingslashit($this->url) . ltrim($inPluginUrl, "/");
+	}
+
 	// -----------------------------------------------------------------------------
 	// lifecycle methods
 	// -----------------------------------------------------------------------------

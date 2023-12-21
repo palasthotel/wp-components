@@ -1,3 +1,10 @@
+# 0.2.1
+- Plugin getPath and getUrl function
+
+# 0.2.0
+- Breaking Change: Assets accepts base path and url parameters instead of Plugin class
+- Breaking Change:
+
 # 0.1.0
 
 - Added: TextdomainConfig property to plugin

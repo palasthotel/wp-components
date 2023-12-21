@@ -5,7 +5,7 @@ namespace Palasthotel\WordPress;
 
 
 /**
- * @since 1.0.2
+ * @version 1.2.0
  */
 class Templates {
 
@@ -23,10 +23,12 @@ class Templates {
 	 * @var null|string[]
 	 */
 	private $sub_dirs = null;
-	private Plugin $plugin;
+	private string $path;
+	private string $templates_dir;
 
-	public function __construct(Plugin $plugin) {
-		$this->plugin = $plugin;
+	public function __construct(string $basePath, string $defaultTemplateDirectory = "templates") {
+		$this->path = $basePath;
+		$this->templates_dir = $defaultTemplateDirectory;
 	}
 
 	public function useThemeDirectory(string $dir){
@@ -64,7 +66,7 @@ class Templates {
 		}
 
 		// add default templates at last position
-		$paths[] = $this->plugin->path . 'templates';
+		$paths[] = $this->path . $this->templates_dir;
 		// find templates
 		foreach ($paths as $path){
 			if(is_file("$path/$template")){
